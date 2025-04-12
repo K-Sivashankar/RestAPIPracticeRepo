@@ -10,14 +10,14 @@ public class CreateStub_ResponseJsonAsFile {
 
     public static void main(String[] args) {
         wireMockServer.start();
-        ResponseDefinitionBuilder builder =
+        ResponseDefinitionBuilder responseDefinitionBuilder =
                 WireMock.aResponse().withStatus(200)
 
                         .withBodyFile("MockResponse.json");
 
         MappingBuilder mappingBuilder =
                 WireMock.get("/java/welcome")
-                        .willReturn(builder);
+                        .willReturn(responseDefinitionBuilder);
 
         wireMockServer.stubFor(mappingBuilder);
 

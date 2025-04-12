@@ -1,9 +1,11 @@
 package week3.day2.wiremock.RequestjsonAsFile;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+
 import com.github.tomakehurst.wiremock.WireMockServer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 public class WireMockJsonFileStub {
     public static void main(String[] args) throws Exception {
@@ -17,7 +19,7 @@ public class WireMockJsonFileStub {
         // Define WireMock stub with JSON file content
         stubFor(post(urlEqualTo("/api/users"))
                 .withHeader("Content-Type", equalTo("application/json"))
-                .withRequestBody(equalToJson(requestBody, true, true)) // Ignore extra fields, whitespace
+                .withRequestBody(equalToJson(requestBody)) // Ignore extra fields, whitespace
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withBody("{ \"message\": \"User created successfully\" }")
@@ -25,6 +27,7 @@ public class WireMockJsonFileStub {
         );
 
         System.out.println("WireMock stub with JSON file is running...");
+        //wireMockServer.stop();
     }
 }
 

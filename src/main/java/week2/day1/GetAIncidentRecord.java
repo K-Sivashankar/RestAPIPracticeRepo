@@ -2,10 +2,9 @@ package week2.day1;
 
 import static io.restassured.RestAssured.*;
 
-import static org.hamcrest.Matchers.*;
-
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import org.hamcrest.Matchers;
 
 public class GetAIncidentRecord {
 
@@ -28,9 +27,9 @@ public class GetAIncidentRecord {
           .log().all()
           .assertThat()
           .statusCode(200)
-          .statusLine(containsString("OK"))
+          .statusLine(Matchers.containsString("OK"))
           .contentType(ContentType.JSON)
-          .body("result.sys_id", equalTo("46ee0924a9fe198100f1cf78c198454a"));
+          .body("result.sys_id", Matchers.equalTo("46ee0924a9fe198100f1cf78c198454a"));
 		
 	}
 
